@@ -12,28 +12,12 @@
 
 const std::string PROGNAME = "fastqSol2Phred";
 const std::string USAGE = "Usage: fastqSol2Phred input.fq output.fqs\nTest quality conversion with fastqSol2Phred unittest";
-const std::string VERSION = "1.0.0";
+const std::string VERSION = "1.0.1";
 const std::string atSymbol = "@";
 const std::string plusSymbol = "+";
 const int SOLOFFSET = 64;
 const int PHREDOFFSET = 33;
 const int OFFSETDIFF = PHREDOFFSET - SOLOFFSET;
-
-bool readLine (std::ifstream& f, std::string& s)
-{
-	s = "";
-	char c = ' ';
-
-	while (!f.eof())
-	{
-		f.get( c );
-
-		if (c == '\n' or f.eof()) { break; }
-		else { s += c; }
-	}
-
-	return s.length() != 0 ? true : false;
-}
 
 std::string convertedScore( std::string const& s)
 {
@@ -56,12 +40,12 @@ void unittest()
 	std::string phredString = "#$%&\'()*+,-./0123456789:;<=>?";
 	if (convertedScore(solString) == phredString)
 	{
-		std::cout << "Unittest passed!" << std::endl;
+		std::cout << "Quality conversion unittest passed!" << std::endl;
 		std::exit(0);
 	}
 	else
 	{
-		std::cout << "Unittest failed!!!" << std::endl;
+		std::cout << "Quality conversion unittest failed!!!" << std::endl;
 		std::exit(1);
 	}
 }
@@ -107,7 +91,8 @@ int main (int argc, char *argv[])
 
 	while (!INFILE.eof())
 	{
-		if (readLine(INFILE, buffer))
+		std::getline( INFILE, buffer );
+		if (buffer.length() > 0)
 		{
 			++fqLine;
 			if (fqLine == 1 && buffer[0] == atSymbol[0])
