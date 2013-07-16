@@ -5,7 +5,6 @@ Simple C++ program to convert a FASTQ file in Solexa 1.3+ quality offset (QUAL+6
 
 ## Compilation
 'make' or 'g++ main.cpp -O3 -Wall -o fastqSol2Phred'
-Simple program that converts FASTQ files in Solexa quality offset (QUAL+64) to a FASTQ file with Phred/Sanger offset (QUAL+33).
 
 ## Usage
 
