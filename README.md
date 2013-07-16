@@ -1,6 +1,16 @@
 fastqSol2Phred
 ==============
+## Introduction
+Simple C++ program to convert a FASTQ file in Solexa 1.3+ quality offset (QUAL+64 encoding) to a FASTQ with Phred/Sanger offset (QUAL+33 encoding). The current version does not work for Solexa quality scores on the older log probability scale.
 
+## Compilation
+'make' or 'g++ main.cpp -O3 -Wall -o fastqSol2Phred'
 Simple program that converts FASTQ files in Solexa quality offset (QUAL+64) to a FASTQ file with Phred/Sanger offset (QUAL+33).
 
-Designed for FASTQ input files from v1.3+ pipeline (not older solexa log of likelihood ratio quality scale).
+## Usage
+
+#### Testing quality conversion
+fastqSol2Phred unittest
+
+#### Converting FASTQ file
+fastqSol2Phred input.fq output.fqs
